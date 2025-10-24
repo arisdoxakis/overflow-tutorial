@@ -21,8 +21,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseAuthorization();
-
 app.MapControllers();
 
 app.MapDefaultEndpoints();
