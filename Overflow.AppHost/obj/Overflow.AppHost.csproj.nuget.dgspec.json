@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[9.5.2, )"
             },
+            "Aspire.Hosting.Keycloak": {
+              "target": "Package",
+              "version": "[9.5.2-preview.1.25522.3, )"
+            },
             "Aspire.Hosting.Orchestration.win-x64": {
               "target": "Package",
               "version": "[9.5.2, )",

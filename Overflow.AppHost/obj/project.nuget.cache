@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "rD3hId1VyWY=",
+  "dgSpecHash": "GWD0uOyaB3Y=",
   "success": true,
   "projectFilePath": "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\9.5.2\\aspire.dashboard.sdk.win-x64.9.5.2.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting\\9.5.2\\aspire.hosting.9.5.2.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.apphost\\9.5.2\\aspire.hosting.apphost.9.5.2.nupkg.sha512",
+    "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.keycloak\\9.5.2-preview.1.25522.3\\aspire.hosting.keycloak.9.5.2-preview.1.25522.3.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.2\\aspire.hosting.orchestration.win-x64.9.5.2.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspnetcore.healthchecks.uris\\9.0.0\\aspnetcore.healthchecks.uris.9.0.0.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\fractions\\7.3.0\\fractions.7.3.0.nupkg.sha512",

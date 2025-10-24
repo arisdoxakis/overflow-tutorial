@@ -139,6 +139,45 @@
           "buildMultiTargeting/Aspire.Hosting.AppHost.targets": {}
         }
       },
+      "Aspire.Hosting.Keycloak/9.5.2-preview.1.25522.3": {
+        "type": "package",
+        "dependencies": {
+          "AspNetCore.HealthChecks.Uris": "9.0.0",
+          "Aspire.Hosting": "9.5.2",
+          "Google.Protobuf": "3.32.0",
+          "Grpc.AspNetCore": "2.71.0",
+          "Grpc.Net.ClientFactory": "2.71.0",
+          "Grpc.Tools": "2.72.0",
+          "Humanizer.Core": "2.14.1",
+          "JsonPatch.Net": "3.3.0",
+          "KubernetesClient": "17.0.14",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "8.0.2",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.20",
+          "Microsoft.Extensions.Hosting": "8.0.1",
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.1",
+          "Microsoft.Extensions.Http": "8.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Options": "8.0.2",
+          "Microsoft.Extensions.Primitives": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Polly.Core": "8.6.3",
+          "Semver": "3.0.0",
+          "StreamJsonRpc": "2.22.11",
+          "System.IO.Hashing": "9.0.8"
+        },
+        "compile": {
+          "lib/net8.0/Aspire.Hosting.Keycloak.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Aspire.Hosting.Keycloak.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Aspire.Hosting.Orchestration.win-x64/9.5.2": {
         "type": "package",
         "build": {
@@ -1553,6 +1592,22 @@
         "lib/net8.0/Aspire.Hosting.AppHost.xml",
         "lib/net9.0/Aspire.Hosting.AppHost.dll",
         "lib/net9.0/Aspire.Hosting.AppHost.xml"
+      ]
+    },
+    "Aspire.Hosting.Keycloak/9.5.2-preview.1.25522.3": {
+      "sha512": "bIBpa67AnqqCKvPqItMDEyb6qfByUUAvubqMLn9wJ3QFD14Kiwv+S4b+lzROKgbTrSNf3+l8fp6NvSChx5VKFQ==",
+      "type": "package",
+      "path": "aspire.hosting.keycloak/9.5.2-preview.1.25522.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "aspire.hosting.keycloak.9.5.2-preview.1.25522.3.nupkg.sha512",
+        "aspire.hosting.keycloak.nuspec",
+        "lib/net8.0/Aspire.Hosting.Keycloak.dll",
+        "lib/net8.0/Aspire.Hosting.Keycloak.xml"
       ]
     },
     "Aspire.Hosting.Orchestration.win-x64/9.5.2": {
@@ -3320,6 +3375,7 @@
     "net9.0": [
       "Aspire.Dashboard.Sdk.win-x64 >= 9.5.2",
       "Aspire.Hosting.AppHost >= 9.5.2",
+      "Aspire.Hosting.Keycloak >= 9.5.2-preview.1.25522.3",
       "Aspire.Hosting.Orchestration.win-x64 >= 9.5.2"
     ]
   },
@@ -3381,6 +3437,10 @@
           "Aspire.Hosting.AppHost": {
             "target": "Package",
             "version": "[9.5.2, )"
+          },
+          "Aspire.Hosting.Keycloak": {
+            "target": "Package",
+            "version": "[9.5.2-preview.1.25522.3, )"
           },
           "Aspire.Hosting.Orchestration.win-x64": {
             "target": "Package",
