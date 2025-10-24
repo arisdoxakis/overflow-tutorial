@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GWD0uOyaB3Y=",
+  "dgSpecHash": "zApRH98I9YQ=",
   "success": true,
   "projectFilePath": "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.apphost\\9.5.2\\aspire.hosting.apphost.9.5.2.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.keycloak\\9.5.2-preview.1.25522.3\\aspire.hosting.keycloak.9.5.2-preview.1.25522.3.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.2\\aspire.hosting.orchestration.win-x64.9.5.2.nupkg.sha512",
+    "C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.postgresql\\9.5.2\\aspire.hosting.postgresql.9.5.2.nupkg.sha512",
+    "C:\\Users\\Aris\\.nuget\\packages\\aspnetcore.healthchecks.npgsql\\9.0.0\\aspnetcore.healthchecks.npgsql.9.0.0.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\aspnetcore.healthchecks.uris\\9.0.0\\aspnetcore.healthchecks.uris.9.0.0.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\fractions\\7.3.0\\fractions.7.3.0.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
@@ -62,6 +64,7 @@
     "C:\\Users\\Aris\\.nuget\\packages\\microsoft.visualstudio.validation\\17.8.8\\microsoft.visualstudio.validation.17.8.8.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\nerdbank.streams\\2.12.87\\nerdbank.streams.2.12.87.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Aris\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\polly.core\\8.6.3\\polly.core.8.6.3.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\semver\\3.0.0\\semver.3.0.0.nupkg.sha512",
     "C:\\Users\\Aris\\.nuget\\packages\\streamjsonrpc\\2.22.11\\streamjsonrpc.2.22.11.nupkg.sha512",

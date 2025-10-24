@@ -67,6 +67,10 @@
               "target": "Package",
               "version": "[9.5.2, )",
               "autoReferenced": true
+            },
+            "Aspire.Hosting.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.5.2, )"
             }
           },
           "imports": [

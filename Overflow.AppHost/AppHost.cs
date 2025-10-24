@@ -1,10 +1,18 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+var postgres = builder.AddPostgres("postgres", port: 5432)
+    .WithDataVolume("postgres-data")
+    .WithPgAdmin();
+
+var questionDb = postgres.AddDatabase("questionDb");
+
 var keycloak = builder.AddKeycloak("keycloak", 6001)
     .WithDataVolume("keycloak-data");
 
 var questionService = builder.AddProject<Projects.QuestionService>("question-svc")
     .WithReference(keycloak)
-    .WaitFor(keycloak);
+    .WithReference(questionDb)
+    .WaitFor(keycloak)
+    .WaitFor(questionDb);
 
 builder.Build().Run();
