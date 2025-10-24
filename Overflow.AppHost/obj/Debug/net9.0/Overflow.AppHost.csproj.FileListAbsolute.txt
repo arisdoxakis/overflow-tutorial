@@ -121,7 +121,6 @@ C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.Ge
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.AssemblyInfoInputs.cache
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.AssemblyInfo.cs
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.csproj.CoreCompileInputs.cache
-C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Aspire\references\.ProjectMetadata.g.cs
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Aspire\references\_AppHost.ProjectMetadata.g.cs
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.sourcelink.json
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.2A6891A2.Up2Date
@@ -130,3 +129,4 @@ C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\refint\Overflow.App
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.pdb
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Overflow.AppHost.genruntimeconfig.cache
 C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\ref\Overflow.AppHost.dll
+C:\work\tutorials\Overflow\Overflow.AppHost\obj\Debug\net9.0\Aspire\references\QuestionService.ProjectMetadata.g.cs
