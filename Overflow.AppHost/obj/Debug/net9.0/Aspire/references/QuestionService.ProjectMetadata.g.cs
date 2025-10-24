@@ -15,5 +15,5 @@ public class QuestionService : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the QuestionService project.
     /// </summary>
-    public string ProjectPath => """C:\work\tutorials\Overflow\QuestionService\QuestionService.csproj""";
+    public string ProjectPath => """/Users/arisdoxakis/work/tutorials/overflow-tutorial/QuestionService/QuestionService.csproj""";
 }

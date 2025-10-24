@@ -17,5 +17,5 @@ public class Overflow_AppHost
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """C:\work\tutorials\Overflow\Overflow.AppHost""";
+    public static string ProjectPath => """/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost""";
 }

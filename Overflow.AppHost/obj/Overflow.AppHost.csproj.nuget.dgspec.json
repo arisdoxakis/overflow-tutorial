@@ -1,31 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj": {}
+    "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/Overflow.AppHost.csproj": {}
   },
   "projects": {
-    "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj": {
+    "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/Overflow.AppHost.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj",
+        "projectUniqueName": "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/Overflow.AppHost.csproj",
         "projectName": "Overflow.AppHost",
-        "projectPath": "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\Overflow.AppHost.csproj",
-        "packagesPath": "C:\\Users\\Aris\\.nuget\\packages\\",
-        "outputPath": "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\obj\\",
+        "projectPath": "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/Overflow.AppHost.csproj",
+        "packagesPath": "/Users/arisdoxakis/.nuget/packages/",
+        "outputPath": "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Aris\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/arisdoxakis/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,13 +39,13 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Aspire.Dashboard.Sdk.win-x64": {
+            "Aspire.Dashboard.Sdk.osx-arm64": {
               "target": "Package",
               "version": "[9.5.2, )",
               "autoReferenced": true
@@ -63,7 +58,7 @@
               "target": "Package",
               "version": "[9.5.2-preview.1.25522.3, )"
             },
-            "Aspire.Hosting.Orchestration.win-x64": {
+            "Aspire.Hosting.Orchestration.osx-arm64": {
               "target": "Package",
               "version": "[9.5.2, )",
               "autoReferenced": true
@@ -89,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -11,21 +11,21 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("31700144-2700-4534-8d60-23c803ca5786")]
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.2\\tools\\dc" +
-    "p.exe"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.2\\tools\\ex" +
-    "t\\"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("C:\\Users\\Aris\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.2\\tools\\ex" +
-    "t\\bin\\"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\work\\tutorials\\Overflow\\Overflow.AppHost")]
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/arisdoxakis/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.5.2/t" +
+    "ools/dcp"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/arisdoxakis/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.5.2/t" +
+    "ools/ext/"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/arisdoxakis/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.5.2/t" +
+    "ools/ext/bin/"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "Overflow.AppHost.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("C:\\Users\\Aris\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\9.5.2\\tools\\Aspire.Das" +
-    "hboard.exe"))]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\work\\tutorials\\Overflow\\Overflow.AppHost\\obj\\")]
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/arisdoxakis/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.5.2/tools/Asp" +
+    "ire.Dashboard.dll"))]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "/Users/arisdoxakis/work/tutorials/overflow-tutorial/Overflow.AppHost/obj/")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Overflow.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03512f3bb64b44fc03be57950a31be6a3f01af89")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d10a14bc104005231f7de23e36b7721035101c77")]
 [assembly: System.Reflection.AssemblyProductAttribute("Overflow.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Overflow.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
