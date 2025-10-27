@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuestionService.Data;
 using QuestionService.Dtos;
 using QuestionService.Models;
@@ -21,6 +22,13 @@ public class QuestionsController(QuestionDbContext context) : ControllerBase
         if (userId is null || name is null)
             return BadRequest("Cannot get user details");
 
+        var validTags = await context.Tags
+            .AsNoTracking()
+            .Where(x => model.Tags.Contains(x.Slug))
+            .ToListAsync();
+        var missing = model.Tags.Except(validTags.Select(x => x.Slug).ToList()).ToList();
+        if (missing.Count != 0) return BadRequest($"Invalid tags: {string.Join(",", missing)}");
+        
         var question = new Question
         {
             Title = model.Title,
@@ -34,5 +42,33 @@ public class QuestionsController(QuestionDbContext context) : ControllerBase
         await context.SaveChangesAsync();
 
         return Created($"/questions/{question.Id}", question);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<Question>>> GetQuestions(string? tag)
+    {
+        var query = context.Questions.AsQueryable();
+        if (!string.IsNullOrEmpty(tag))
+        {
+            query = query.Where((x => x.TagSlugs.Contains(tag)));
+        }
+        
+        return await query
+            .AsNoTracking()
+            .OrderByDescending(o => o.CreatedAt)
+            .ToListAsync();
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Question>> GetQuestion(string id)
+    {
+        var question = await context.Questions.FindAsync(id);
+        
+        if (question is null) return NotFound();
+
+        await context.Questions.Where(x => x.Id == id)
+            .ExecuteUpdateAsync(setters => setters.SetProperty(x => x.ViewCount, x => x.ViewCount + 1));
+        
+        return question;
     }
 }
