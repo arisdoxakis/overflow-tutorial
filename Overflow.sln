@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{89
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionService", "QuestionService\QuestionService.csproj", "{AE7CF8C5-7F8D-46C6-9ACF-00BEDC0EA0AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Searchservice", "Searchservice\Searchservice.csproj", "{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{AE7CF8C5-7F8D-46C6-9ACF-00BEDC0EA0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE7CF8C5-7F8D-46C6-9ACF-00BEDC0EA0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE7CF8C5-7F8D-46C6-9ACF-00BEDC0EA0AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +43,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AE7CF8C5-7F8D-46C6-9ACF-00BEDC0EA0AA} = {89DF64F7-7E6A-4B30-AAA0-6F16AAD68A31}
+		{90F1AA0C-6387-4401-8B17-F25CC5F2A3FB} = {89DF64F7-7E6A-4B30-AAA0-6F16AAD68A31}
 	EndGlobalSection
 EndGlobal

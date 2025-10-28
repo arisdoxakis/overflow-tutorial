@@ -28,7 +28,7 @@ public class QuestionsController(QuestionDbContext context) : ControllerBase
             .ToListAsync();
         var missing = model.Tags.Except(validTags.Select(x => x.Slug).ToList()).ToList();
         if (missing.Count != 0) return BadRequest($"Invalid tags: {string.Join(",", missing)}");
-        
+
         var question = new Question
         {
             Title = model.Title,
@@ -52,23 +52,23 @@ public class QuestionsController(QuestionDbContext context) : ControllerBase
         {
             query = query.Where((x => x.TagSlugs.Contains(tag)));
         }
-        
+
         return await query
             .AsNoTracking()
             .OrderByDescending(o => o.CreatedAt)
             .ToListAsync();
     }
-    
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Question>> GetQuestion(string id)
     {
         var question = await context.Questions.FindAsync(id);
-        
+
         if (question is null) return NotFound();
 
         await context.Questions.Where(x => x.Id == id)
             .ExecuteUpdateAsync(setters => setters.SetProperty(x => x.ViewCount, x => x.ViewCount + 1));
-        
+
         return question;
     }
 
@@ -78,28 +78,28 @@ public class QuestionsController(QuestionDbContext context) : ControllerBase
     {
         var question = await context.Questions.FindAsync(id);
         if (question is null) return NotFound();
-        
+
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId != question.AskerId) return Unauthorized();
-        
+
         var validTags = await context.Tags
             .AsNoTracking()
             .Where(x => dto.Tags.Contains(x.Slug))
             .ToListAsync();
         var missing = dto.Tags.Except(validTags.Select(x => x.Slug).ToList()).ToList();
         if (missing.Count != 0) return BadRequest($"Invalid tags: {string.Join(",", missing)}");
-        
+
         question.Title = dto.Title;
         question.Content = dto.Content;
         question.TagSlugs = dto.Tags;
         question.UpdatedAt = DateTime.UtcNow;
-        
+
         await context.SaveChangesAsync();
-        
+
         return NoContent();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<ActionResult> DeleteQuestion(string id)
     {
