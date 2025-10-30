@@ -6,13 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using QuestionService.Data;
 using QuestionService.Dtos;
 using QuestionService.Models;
+using QuestionService.Services;
 using Wolverine;
 
 namespace QuestionService.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class QuestionsController(QuestionDbContext context, IMessageBus bus) : ControllerBase
+public class QuestionsController(QuestionDbContext context, IMessageBus bus, TagService tagsService) : ControllerBase
 {
     [Authorize]
     [HttpPost]
@@ -24,13 +25,8 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus) : C
         if (userId is null || name is null)
             return BadRequest("Cannot get user details");
 
-        var validTags = await context.Tags
-            .AsNoTracking()
-            .Where(x => model.Tags.Contains(x.Slug))
-            .ToListAsync();
-        var missing = model.Tags.Except(validTags.Select(x => x.Slug).ToList()).ToList();
-        if (missing.Count != 0) return BadRequest($"Invalid tags: {string.Join(",", missing)}");
-
+        if (!await tagsService.AreTagsValidAsync(model.Tags)) return BadRequest("Invalid tags");
+        
         var question = new Question
         {
             Title = model.Title,
@@ -86,12 +82,7 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus) : C
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId != question.AskerId) return Unauthorized();
 
-        var validTags = await context.Tags
-            .AsNoTracking()
-            .Where(x => dto.Tags.Contains(x.Slug))
-            .ToListAsync();
-        var missing = dto.Tags.Except(validTags.Select(x => x.Slug).ToList()).ToList();
-        if (missing.Count != 0) return BadRequest($"Invalid tags: {string.Join(",", missing)}");
+        if (!await tagsService.AreTagsValidAsync(dto.Tags)) return BadRequest("Invalid tags");
 
         question.Title = dto.Title;
         question.Content = dto.Content;
