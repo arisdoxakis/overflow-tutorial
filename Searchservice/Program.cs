@@ -1,6 +1,12 @@
+using System.Text.RegularExpressions;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Searchservice.Data;
+using Searchservice.Models;
 using Typesense;
 using Typesense.Setup;
+using Wolverine;
+using Wolverine.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +31,24 @@ builder.Services.AddTypesenseClient(config =>
     };
 });
 
+builder.Services.AddOpenTelemetry().WithTracing(traceProviderBuilder =>
+{
+    traceProviderBuilder
+        .SetResourceBuilder(ResourceBuilder.CreateDefault()
+            .AddService(builder.Environment.ApplicationName))
+        .AddSource("Wolverine");
+});
+
+builder.Host.UseWolverine(options => 
+{
+    options.UseRabbitMqUsingNamedConnection("messaging")
+        .AutoProvision();
+    options.ListenToRabbitQueue("questions.search", config =>
+    {
+        config.BindExchange("questions");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +58,35 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapDefaultEndpoints();
+
+app.MapGet("/search", async (string query, ITypesenseClient client) =>
+{
+    // [aspire]something
+    string? tag = null;
+    var tagMatch = Regex.Match(query, @"\[(.*?)\]");
+    if (tagMatch.Success)
+    {
+        tag = tagMatch.Groups[1].Value;
+        query = query.Replace(tagMatch.Value, "").Trim();
+    }
+
+    var searchParams = new SearchParameters(query, "title,content");
+
+    if (!string.IsNullOrWhiteSpace(tag))
+    {
+        searchParams.FilterBy = $"tags:=[{tag}]";
+    }
+
+    try
+    {
+        var results = await client.Search<SearchQuestion>("questions", searchParams);
+        return Results.Ok(results.Hits.Select(hit => hit.Document));
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem("Typesense search failed", ex.Message);
+    }
+});
 
 using var scope = app.Services.CreateScope();
 var client = scope.ServiceProvider.GetRequiredService<ITypesenseClient>();
