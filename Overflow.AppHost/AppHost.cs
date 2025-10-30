@@ -7,10 +7,13 @@ var postgres = builder.AddPostgres("postgres", port: 5432)
     .WithDataVolume("postgres-data")
     .WithPgAdmin();
 
+var typesenseApiKey = builder.AddParameter("typesense-api-key", secret: true);
+
 var typesense = builder.AddContainer("typesense", "typesense/typesense", "29.0")
-    .WithArgs("--data-dir", "/data", "--api-key", "xyz", "--enable-cors")
+    .WithArgs("--data-dir", "/data", "--api-key", typesenseApiKey, "--enable-cors")
     .WithVolume("typesense-data", "/data")
-    .WithHttpEndpoint(8108, 8108, name: "typesense");
+    .WithEnvironment("TYPESENSE_API_KEY", typesenseApiKey)
+    .WithHttpEndpoint(9108, 8108, name: "typesense");
 
 var typesenseContainer = typesense.GetEndpoint("typesense");
 
@@ -23,6 +26,7 @@ var questionService = builder.AddProject<Projects.QuestionService>("question-svc
     .WaitFor(questionDb);
 
 var searchService = builder.AddProject<Projects.Searchservice>("search-svc")
+    .WithEnvironment("typesense-api-key", typesenseApiKey)
     .WithReference(typesenseContainer)
     .WaitFor(typesense);
 
