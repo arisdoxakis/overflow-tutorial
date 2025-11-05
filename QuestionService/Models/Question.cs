@@ -22,4 +22,6 @@ public class Question
     public List<string> TagSlugs { get; set; } = [];
     public bool HasAcceptedAnswer { get; set; }
     public int Votes { get; set; }
+
+    public IEnumerable<Answer> Answers { get; set; } = [];
 }

@@ -114,4 +114,88 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
         
         return NoContent();
     }
+    
+    [Authorize]
+    [HttpPost("{questionId}/answers")]
+    public async Task<ActionResult<Answer>> CreateAnswerForQuestion(string questionId, CreateAnswerDto model)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var name = User.FindFirstValue("name");
+
+        if (userId is null || name is null)
+            return BadRequest("Cannot get user details");
+
+        var answer = new Answer
+        {
+            QuestionId = questionId,
+            Content = model.Content,
+            UserId = userId,
+            UserDisplayName = name
+        };
+        
+        await context.Answers.AddAsync(answer);
+        await context.SaveChangesAsync();
+
+        return Created($"/questions/{answer.Id}", answer);
+    }
+    
+    [Authorize]
+    [HttpPut("/{questionId}/answers/{answerId}")]
+    public async Task<ActionResult> UpdateAnswer(string questionId, string answerId, CreateAnswerDto model)
+    {
+        var question = await context.Questions.FindAsync(questionId);
+        if (question is null) return NotFound();
+        
+        var answer = await context.Answers.FindAsync(answerId);
+        if (answer is null) return NotFound();
+
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId != question.AskerId) return Unauthorized();
+
+        answer.Content = model.Content;
+        question.UpdatedAt = DateTime.UtcNow;
+
+        await context.SaveChangesAsync();
+
+       return NoContent();
+    }
+    
+    [Authorize]
+    [HttpDelete("/{questionId}/answers/{answerId}")]
+    public async Task<ActionResult> DeleteQuestion(string questionId, string answerId)
+    {
+        var question = await context.Questions.FindAsync(questionId);
+        if (question is null) return NotFound();
+        
+        var answer = await context.Answers.FindAsync(answerId);
+        if (answer is null) return NotFound();
+        
+        if (answer.Accepted) return BadRequest("Cannot delete accepted answer");
+
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId != question.AskerId) return Unauthorized();
+        
+        context.Answers.Remove(answer);
+        await context.SaveChangesAsync();
+        
+        return NoContent();
+    }
+    
+    [Authorize]
+    [HttpPost("/{questionId}/answers/{answerId}/accept")]
+    public async Task<ActionResult> AcceptAnswer(string questionId, string answerId)
+    {
+        var question = await context.Questions.FindAsync(questionId);
+        if (question is null) return NotFound();
+        
+        var answer = await context.Answers.FindAsync(answerId);
+        if (answer is null) return NotFound();
+        
+        if (answer.Accepted) return BadRequest("Cannot delete accepted answer");
+
+        answer.Accepted = !answer.Accepted;
+        await context.SaveChangesAsync();
+        
+        return NoContent();
+    }    
 }
