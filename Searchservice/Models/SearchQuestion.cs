@@ -10,7 +10,7 @@ public class SearchQuestion
     public required string Title { get; set; }
     [JsonPropertyName("content")]
     public required string Content { get; set; }
-    [JsonPropertyName("tags")] 
+    [JsonPropertyName("tags")]
     public string[] Tags { get; set; } = [];
     [JsonPropertyName("createdAt")]
     public long CreatedAt { get; set; }
