@@ -56,6 +56,7 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
 
         return await query
             .AsNoTracking()
+            .Include(i => i.Answers)
             .OrderByDescending(o => o.CreatedAt)
             .ToListAsync();
     }
@@ -67,7 +68,9 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
 
         if (question is null) return NotFound();
 
-        await context.Questions.Where(x => x.Id == id)
+        await context.Questions
+            .Include(i => i.Answers)
+            .Where(x => x.Id == id)
             .ExecuteUpdateAsync(setters => setters.SetProperty(x => x.ViewCount, x => x.ViewCount + 1));
 
         return question;
@@ -124,7 +127,10 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
 
         if (userId is null || name is null)
             return BadRequest("Cannot get user details");
-
+        
+        var question = await context.Questions.FindAsync(questionId);
+        if (question is null) return NotFound();
+        
         var answer = new Answer
         {
             QuestionId = questionId,
@@ -133,10 +139,14 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
             UserDisplayName = name
         };
         
-        await context.Answers.AddAsync(answer);
+        question.Answers.Add(answer);
+        question.AnswerCount++;
+        
         await context.SaveChangesAsync();
+        
+        await bus.PublishAsync(new UpdatedAnswerCount(questionId, question.AnswerCount));
 
-        return Created($"/questions/{answer.Id}", answer);
+        return Created($"/questions/{questionId}", answer);
     }
     
     [Authorize]
@@ -156,13 +166,13 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
         question.UpdatedAt = DateTime.UtcNow;
 
         await context.SaveChangesAsync();
-
-       return NoContent();
+        
+        return NoContent();
     }
     
     [Authorize]
     [HttpDelete("/{questionId}/answers/{answerId}")]
-    public async Task<ActionResult> DeleteQuestion(string questionId, string answerId)
+    public async Task<ActionResult> DeleteAnswer(string questionId, string answerId)
     {
         var question = await context.Questions.FindAsync(questionId);
         if (question is null) return NotFound();
@@ -176,7 +186,11 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
         if (userId != question.AskerId) return Unauthorized();
         
         context.Answers.Remove(answer);
+        question.AnswerCount--;
+        
         await context.SaveChangesAsync();
+        
+        await bus.PublishAsync(new UpdatedAnswerCount(questionId, question.AnswerCount));
         
         return NoContent();
     }
@@ -193,9 +207,13 @@ public class QuestionsController(QuestionDbContext context, IMessageBus bus, Tag
         
         if (answer.Accepted) return BadRequest("Cannot delete accepted answer");
 
-        answer.Accepted = !answer.Accepted;
+        answer.Accepted = true;
+        question.HasAcceptedAnswer = true;
+        
         await context.SaveChangesAsync();
+
+        await bus.PublishAsync(new AnswerAccepted(questionId));
         
         return NoContent();
-    }    
+    }
 }

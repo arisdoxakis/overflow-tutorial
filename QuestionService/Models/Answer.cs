@@ -20,7 +20,6 @@ public class Answer
     
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
-    
-    [JsonIgnore]
-    public Question Question { get; set; }
+
+    [JsonIgnore] public Question Question { get; set; } = null!;
 }
